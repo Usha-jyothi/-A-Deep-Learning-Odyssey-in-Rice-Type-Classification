@@ -1,14 +1,20 @@
 # -A-Deep-Learning-Odyssey-in-Rice-Type-Classification
-pip install tensorflow matplotlib
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras import layers, models
 import matplotlib.pyplot as plt
 
 # Simulated dataset parameters
-num_classes = 5  # e.g., Basmati, Jasmine, Arborio, Brown, White
-img_height, img_width = 150, 150
-num_train = 500
+# Define the parameters for the simulated dataset
+NUM_CLASSES = 5 # Example: 5 types of rice
+IMG_HEIGHT = 128
+IMG_WIDTH = 128
+NUM_SAMPLES = 1000 # Number of training samples
+BATCH_SIZE = 32 # Define BATCH_SIZE here
+
+num_classes = NUM_CLASSES  # e.g., Basmati, Jasmine, Arborio, Brown, White
+img_height, img_width = IMG_HEIGHT, IMG_WIDTH
+num_train = NUM_SAMPLES
 num_val = 100
 
 # Generate random synthetic image data and labels
@@ -39,7 +45,7 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 # Train the model
-history = model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=5, batch_size=32)
+history = model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=5, batch_size=BATCH_SIZE)
 
 # Plot training & validation accuracy
 plt.plot(history.history['accuracy'], label='Train Accuracy')
